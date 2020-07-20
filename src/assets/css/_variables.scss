@@ -1,0 +1,16 @@
+// Colors
+$colorRed: #F44336;
+
+// Responsive
+$break-xs: 576px;
+$break-small: 768px;
+$break-medium: 992px;
+$break-large: 1200px;
+
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1276px
+) !default;

@@ -1,0 +1,23 @@
+@import "variables";
+@import "mixins";
+
+.form {
+    .input-field {
+        &.invalid {
+            input[type=text] {
+                border-bottom: 1px solid $colorRed;
+                box-shadow: 0 1px 0 0 $colorRed;
+            }
+        }
+    }
+    &.blur {
+        opacity: .5;
+    }
+}
+
+.app-loader {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    left: 0;
+}
