@@ -1,0 +1,77 @@
+@mixin down-to($size) {
+	@media (max-width: map-get($breakpoints, $size) - 1) { @content; }
+}
+@mixin up-from($size) {
+	@media (min-width: map-get($breakpoints, $size)) { @content; }
+}
+@mixin between($from, $to) {
+	$startPoint: map-get($breakpoints, $from);
+	$endPoint: map-get($breakpoints, $to);
+	@media (min-width: $startPoint) and (max-width: $endPoint - 1) { @content; }
+}
+@mixin flexDirection($type: column) {
+	@if($type == column) {
+		-webkit-box-orient: vertical;
+	} @else if($type == row) {
+		-webkit-box-orient: horizontal;
+	}
+	flex-direction: $type;
+}
+@mixin flex($type: column) {
+	display: -webkit-box;
+	-webkit-box-direction: normal;
+	display: flex;
+	@include flexDirection($type);
+}
+@mixin bg-full() {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+@mixin bg-default() {
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+@mixin bg-color($color: $colorPrimary80, $opacity: 0.6) {
+	&:before {
+		content: '';
+		@include bg-full();
+		background-color: rgba($color, $opacity);
+	}
+}
+@mixin clearCols() {
+	*[class*=col-] {
+		flex: none;
+		max-width: none;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+@mixin clearRow() {
+	.row {
+		margin-left: 0;
+		margin-right: 0;
+		@include clearCols();
+	}
+}
+@mixin linkHoverUnderline() {
+	a {
+		border-bottom: 1px solid transparent;
+		&:hover {
+			border-color: rgba($colorPrimary30, .45);
+		}
+	}
+}
+@mixin animation-fadeOut($duration: .5s) {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s $duration, opacity $duration linear;
+}
+@mixin animation-fadeIn($opacity: 1, $duration: .5s) {
+	visibility: visible;
+	opacity: $opacity;
+	transition: opacity $duration linear;
+}
